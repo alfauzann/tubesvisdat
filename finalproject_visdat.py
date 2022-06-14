@@ -17,13 +17,8 @@ from bokeh.plotting import figure, show, curdoc
 from bokeh.models import ColumnDataSource, HoverTool, GroupFilter,CDSView, DateRangeSlider, CustomJS,Dropdown
 from bokeh.layouts import row, column, gridplot, layout
 from bokeh.resources import INLINE
-from google.colab import drive
-
 
 from datetime import date
-
-drive.mount("/content/gdrive")
-!gdown --id 1JYqpgLM0wj0yKSoO4anbKIIHa1apQpcz
 
 data = pd.read_csv("WHO-COVID-19-global-data.csv", parse_dates=['Date_reported'])
 data
@@ -43,7 +38,7 @@ DT
 DT.info()
 
 # Membuat file yang dioutputkan
-output_file('KasusBaruCov-19.html', 
+output_file('KasusCovid19.html', 
             title='New Case Covid-19 in United States of America and China')
 
 # Mengisolasi data 
