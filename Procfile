@@ -1,1 +1,1 @@
-web: gunicorn finalproject_visdatApp: app
+web: gunicorn finalproject_visdatApp:app --log-file -
