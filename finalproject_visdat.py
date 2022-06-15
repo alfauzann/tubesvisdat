@@ -20,7 +20,7 @@ from bokeh.resources import INLINE
 
 from datetime import date
 
-data = pd.read_csv("WHO-COVID-19-global-data.csv", parse_dates=['Date_reported'])
+data = pd.read_csv("./data/WHO-COVID-19-global-data.csv", parse_dates=['Date_reported'])
 data
 
 data.info()
@@ -39,7 +39,7 @@ DT.info()
 
 # Membuat file yang dioutputkan
 output_file('KasusCovid19.html', 
-            title='New Case Covid-19 in United States of America and China')
+            title='Covid-19 in United States of America, Indonesia and China')
 
 # Mengisolasi data 
 it_data2 = DT[DT['Country'] == 'United States of America']
@@ -52,10 +52,10 @@ ind_cds2 = ColumnDataSource(ind_data2)
 ina_cds2 = ColumnDataSource(ina_data2)
 
 # Specify the selection tools to be made available
-select_tools = ['pan', 'box_select', 'lasso_select', 'reset', 'wheel_zoom','box_zoom']
+select_tools = ['pan', 'reset', 'box_select', 'wheel_zoom','box_zoom']
 
 
-#membuat date slider
+#membuat date range
 date_range_slider = DateRangeSlider(value=(date(2020, 1, 3), date(2022, 6, 10)),
                                     start=date(2020, 1, 3), end=date(2022, 6, 10))
 date_range_slider.js_on_change("value", CustomJS(code="""
@@ -95,7 +95,7 @@ common_USA_kwargs = {
 # Create and configure the figure
 fig = figure(x_axis_type='datetime',
              plot_height=600, plot_width=800,
-             title='Kasus Baru Covid-19 di China, Indonesia dan United States of America (Klik label untuk melihat)',
+             title='Kasus Covid-19 di China, United States of America dan Indonesia (Klik label untuk melihat)',
              x_axis_label='Date', y_axis_label='New Cases',
              toolbar_location='right', tools=select_tools)
 
@@ -141,6 +141,6 @@ date_range_slider.js_link("value", fig.x_range, "start", attr_selector=0)
 date_range_slider.js_link("value", fig.x_range, "end", attr_selector=1)
 
 # show grafik 
-layout = layout([date_range_slider], [fig])
+layout = layout([fig], [date_range_slider])
 show(layout)
 curdoc().add_root(layout)
