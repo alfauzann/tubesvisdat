@@ -51,7 +51,7 @@ it_cds2 = ColumnDataSource(it_data2)
 ind_cds2 = ColumnDataSource(ind_data2)
 ina_cds2 = ColumnDataSource(ina_data2)
 
-# Specify the selection tools to be made available
+# memilih fitur interaktif
 select_tools = ['pan', 'reset', 'box_select', 'wheel_zoom','box_zoom']
 
 
@@ -92,7 +92,7 @@ common_USA_kwargs = {
     'legend_label': 'United States of America'
 }
 
-# Create and configure the figure
+# membuat figur/grafik
 fig = figure(x_axis_type='datetime',
              plot_height=600, plot_width=800,
              title='Kasus Covid-19 di China, United States of America dan Indonesia (Klik label untuk melihat)',
@@ -133,10 +133,10 @@ fig.add_tools(HoverTool(tooltips=[('Date', '@Date{%F}'),  ('Country', '@Country'
 
 fig.legend.location = 'top_left'
 
-#untuk menghide label
+#fitur menghide label
 fig.legend.click_policy = 'mute'
 
-# perlihatkan slider
+# memunculkan slider
 date_range_slider.js_link("value", fig.x_range, "start", attr_selector=0)
 date_range_slider.js_link("value", fig.x_range, "end", attr_selector=1)
 
